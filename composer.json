@@ -1,0 +1,35 @@
+{
+    "name": "inventorus/api-php-sdk",
+    "type": "library",
+    "description": "Inventorus public API",
+    "version": "v1.0.0",
+    "keywords": ["Inventorus API","API","SDK"],
+    "homepage": "https://inventorus.com/",
+    "license": "UNLICENSE",
+    "authors": [
+        {
+            "name": "Zeeshan @ APIMATIC",
+            "email": "zeeshan@apimatic.io",
+            "homepage": "https://github.com/apimatic",
+            "role": "Developer"
+        },
+        {
+            "name": "Inventorus",
+            "email": "contact@inventorus.com",
+            "homepage": "https://inventorus.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "mashape/unirest-php": "~3.0.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Inventorus\\": "src/Inventorus/"
+        }
+    }
+}
