@@ -9,9 +9,9 @@ to install Inventorus SDK.
 
 ## Documentation
 
-This repository contains brief documentation, we recommend reading full [here](https://inventorus.github.io).
+This repository contains brief documentation, we recommend reading extended version [here](https://inventorus.github.io/docs/php-sdk/v1).
 
-To learn more about responses read [API documentation](https://inventorus.github.io).
+To learn everything about responses and requests read [API documentation](https://inventorus.github.io/docs/api/v1).
 
 For use cases please visit [examples](https://github.com/inventorus/examples).
 
