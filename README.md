@@ -3,14 +3,17 @@
 # Inventorus PHP SDK
 
 Welcome to Inventorus PHP SDK. This repository contains SDK and its documentation.
+
 If you already have installed Composer, run `composer require inventorus/api-php-sdk`
 to install Inventorus SDK.
 
 ## Documentation
 
 This repository contains brief documentation, we recommend reading full [here](https://inventorus.github.io).
+
 To learn more about responses read [API documentation](https://inventorus.github.io).
-For usage cases please visit [examples](https://github.com/inventorus/examples).
+
+For use cases please visit [examples](https://github.com/inventorus/examples).
 
 ## Installation
 
