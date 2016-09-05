@@ -518,7 +518,7 @@ class InventorusClient {
 
     /**
      * Creates a new import.
-     * @param  Models\ImportRequest $body       Required parameter
+     * @param  string     $id         Required parameter: ID of Import transaction
      * @return string
      * @throws APIException Thrown if API call fails
      */
@@ -551,8 +551,6 @@ class InventorusClient {
             $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
-        printf('%s', json_encode(Request\Body::Json($body)));
-
         //and invoke the API call request to fetch the response
         $response = Request::post($_queryUrl, $_headers, Request\Body::Json($body));
 
@@ -572,6 +570,67 @@ class InventorusClient {
         }
 
         return $response->body->response->data->id;
+    }
+
+    /**
+     * Cancels an unfinished import.
+     * @param  $id       Required parameter
+     * @return boolean
+     * @throws APIException Thrown if API call fails
+     */
+    public function cancelImport ($id)
+    {
+        //the base uri for api requests
+        $_queryBuilder = Configuration::$BASEURI;
+
+        //prepare query string for API call
+        $_queryBuilder = $_queryBuilder.'/warehouse/imports/{id}/cancel/';
+
+        //process optional query parameters
+        APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+          'id'     => $id,
+        ));
+
+        //process optional query parameters
+        APIHelper::appendUrlWithQueryParameters($_queryBuilder, array (
+          'apiKey' => Configuration::$apiKey,
+        ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+          'user-agent'    => 'APIMATIC 2.0',
+          'Accept'        => 'application/json',
+          'content-type'  => 'application/json; charset=utf-8'
+        );
+
+        //call on-before Http callback
+        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
+        if($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+
+        //and invoke the API call request to fetch the response
+        $response = Request::post($_queryUrl, $_headers);
+
+        //call on-after Http callback
+        if($this->getHttpCallBack() != null) {
+            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        if (!isset($response->body->status)) {
+          throw new APIException('Unexpected error in API call. See HTTP response body for details.', $response->code, $response->body);
+        }
+        else if ($response->body->status == 'error') {
+          throw new APIException('API responded with error status.', $response->code, $response->body);
+        }
+
+        return true;
     }
 
     /**
